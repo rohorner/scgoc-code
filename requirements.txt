@@ -1,0 +1,5 @@
+python-crontab==2.1.1
+python-dateutil==2.6.0
+pytz==2016.10
+requests==2.12.4
+six==1.10.0
