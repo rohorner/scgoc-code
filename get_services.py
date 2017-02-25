@@ -52,7 +52,8 @@ if __name__ == '__main__':
 
     # Create or load the cron file (just a test file for now)
     try:
-        crontab = CronTab(tabfile=CRONFILE)
+        #crontab = CronTab(tabfile=CRONFILE)
+        crontab = CronTab(user='stcatherine')
     except:
         print ("Couldn't load cron file:", CRONFILE)
 
@@ -79,7 +80,7 @@ if __name__ == '__main__':
                     job.setall(datetime.fromtimestamp(this_event.end_time/1000))
 
                     # Commit the job to the cron
-                    #crontab.write()
+                    crontab.write()
                     # print this_event
         except KeyError, e:
             print '\nWARNING: No Services found response for %s\n' % called_url
