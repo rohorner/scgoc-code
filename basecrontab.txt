@@ -1,0 +1,4 @@
+0 8 * * 1-5 play -q -t mp3 -v .5 http://live.str3am.com:2570/ # Weekday Music on Hold
+0 18 * * 1-5 killall play
+
+@daily /home/stcatherine/scgoc-stream/get_services.py # Gather upcoming services from the web site and create stream cron jobs

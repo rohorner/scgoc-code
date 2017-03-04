@@ -7,11 +7,14 @@ from pprint import pprint
 from crontab import CronTab
 import requests
 import json
+import boto3
 
 SERVICES_URL = 'http://stcatherinechurch.org/services'
-CRONFILE = './basecrontab.txt'
+CRONFILE = '/home/stcatherine/scgoc-stream/basecrontab.txt'
+CRON_OUT = '/home/stcatherine/scgoc-stream/outcrontab.txt'
 START_COMMAND = '/home/stcatherine/streaming'
 STOP_COMMAND = '/home/stcatherine/ending'
+SNS_ARN = 'arn:aws:sns:us-west-2:541892330177:scgoc-stream'
 
 class StreamableEvent():
     def __init__(self, id, title, start, end):
@@ -81,11 +84,16 @@ if __name__ == '__main__':
 
                     # Commit the job to the cron of the streamer username
                     #crontab.write_to_user(user='stcatherine')
+                    crontab.write(CRON_OUT)
                     # print this_event
         except KeyError, e:
             print '\nWARNING: No Services found response for %s\n' % called_url
 
-    print "I'll build this crontab:"
+    msgstring = ''
+    #print "I'll build this crontab:"
     for job in crontab:
-        print job
+        #print job
+        msgstring += str(job)+'\n'
 
+    client = boto3.client('sns')
+    response = client.publish(TopicArn = SNS_ARN, Message = msgstring)
