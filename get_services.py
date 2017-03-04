@@ -80,7 +80,7 @@ if __name__ == '__main__':
                     job.setall(datetime.fromtimestamp(this_event.end_time/1000))
 
                     # Commit the job to the cron of the streamer username
-                    crontab.write_to_user(user='stcatherine')
+                    #crontab.write_to_user(user='stcatherine')
                     # print this_event
         except KeyError, e:
             print '\nWARNING: No Services found response for %s\n' % called_url
