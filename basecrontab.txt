@@ -1,4 +1,9 @@
-0 8 * * 1-5 play -q -t mp3 -v .5 http://live.str3am.com:2570/ # Weekday Music on Hold
+0 8 * * 1-5 play -q -t mp3 http://ancientfaith.streamguys1.com/mp3music # Weekday Music on Hold
 0 18 * * 1-5 killall play
 
-@daily /home/stcatherine/scgoc-stream/get_services.py # Gather upcoming services from the web site and create stream cron jobs
+#Sunday pre-service music
+0 7 * * 0 /home/stcatherine/mpcstart
+
+# Rebuild crontab with web site calendar entries
+@daily cd /home/stcatherine; scgoc-stream/get_services.py 2>&1
+

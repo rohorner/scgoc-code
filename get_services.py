@@ -83,17 +83,18 @@ if __name__ == '__main__':
                     job.setall(datetime.fromtimestamp(this_event.end_time/1000))
 
                     # Commit the job to the cron of the streamer username
-                    #crontab.write_to_user(user='stcatherine')
-                    crontab.write(CRON_OUT)
+                    crontab.write_to_user(user='stcatherine')
+                    #crontab.write(CRON_OUT)
                     # print this_event
         except KeyError, e:
             print '\nWARNING: No Services found response for %s\n' % called_url
 
-    msgstring = ''
+    msgstring = 'Building this crontab file:\n'
     #print "I'll build this crontab:"
     for job in crontab:
         #print job
         msgstring += str(job)+'\n'
 
-    client = boto3.client('sns')
-    response = client.publish(TopicArn = SNS_ARN, Message = msgstring)
+    # Send notification to AWS SNS subscribers
+    #client = boto3.client('sns')
+    #response = client.publish(TopicArn = SNS_ARN, Message = msgstring)
