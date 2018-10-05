@@ -76,25 +76,25 @@ if __name__ == '__main__':
                                                  event['startDate'],
                                                  event['endDate']
                                                  )
+                    #print this_event
                     job = crontab.new(command=START_COMMAND, comment = this_event.id+'::'+this_event.title)
-                    job.setall(datetime.fromtimestamp(this_event.start_time/1000))
+                    #print "Start time:",this_event.start_time, datetime.fromtimestamp(float(this_event.start_time/1000))
+                    job.setall(datetime.fromtimestamp(float(this_event.start_time/1000)))
 
                     job = crontab.new(command=STOP_COMMAND, comment = this_event.id)
-                    job.setall(datetime.fromtimestamp(this_event.end_time/1000))
+                    # print "End time:",this_event.end_time, datetime.fromtimestamp(float(this_event.end_time/1000))
+                    job.setall(datetime.fromtimestamp(float(this_event.end_time/1000)))
 
                     # Commit the job to the cron of the streamer username
                     crontab.write_to_user(user='stcatherine')
-                    #crontab.write(CRON_OUT)
-                    # print this_event
+                    # Write to a file to confirm output
+                    # crontab.write(CRON_OUT)
         except KeyError, e:
             print '\nWARNING: No Services found response for %s\n' % called_url
 
     msgstring = 'Building this crontab file:\n'
     #print "I'll build this crontab:"
     for job in crontab:
-        #print job
+        print job
         msgstring += str(job)+'\n'
 
-    # Send notification to AWS SNS subscribers
-    #client = boto3.client('sns')
-    #response = client.publish(TopicArn = SNS_ARN, Message = msgstring)
