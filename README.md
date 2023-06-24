@@ -11,6 +11,6 @@ https://github.com/Joe12387/detectIncognito
 
 CDN-based script
 
-    <script src="https://cdn.jsdelivr.net/gh/Joe12387/detectIncognito@v1.3.0/dist/es5/detectIncognito.min.js"></script>
+```<script src="https://cdn.jsdelivr.net/gh/Joe12387/detectIncognito@v1.3.0/dist/es5/detectIncognito.min.js"></script>```
 
 Test with https://detectincognito.com/
