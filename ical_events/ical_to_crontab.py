@@ -1,9 +1,16 @@
+#!/usr/bin/env python3
+
 from ics import Calendar
 from crontab import CronTab
 from datetime import datetime
 import arrow
 import requests
 from pprint import pprint
+import logging, sys
+
+logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+logging.debug('A debug message!')
+# logging.info('We processed %d records', len(processed_records))
 
 # URL of the "Services" calendar feed
 url_services = "https://stcatherinechurch.onechurchsoftware.com/api/calendars/feed/7iWxebAmvU5PJQgQXh663Cut1ALT9Sz+j+xA==G8Mcb69uvXI0GK8adgGCPXVWnNPI/ni32/fj4/A30Pw==t7aqLeA2Q7ky2C"
@@ -48,11 +55,7 @@ def UTC_to_local_datetime(event_time,tz):
     return(event_time.to(tz).datetime)
 
 
-# Get the events from the calendar
-# pprint(calendar.timeline)
-
 # Use the 'timeline' iterator to return the events in chronological order
-# # Print the events
 def get_stream_timeline(url, my_tz, window):
 
     try:
@@ -63,19 +66,17 @@ def get_stream_timeline(url, my_tz, window):
     # initialize an empty list for the events
     event_list = []
 
-    # populate the event list with just the components that create_crontab_entry wants to see
+    # populate the event list with just the components that we need to create crontab entries
+    # Event ID, Event Name, and start/stop times
     for event in calendar.timeline:
-        # pprint(event.__dict__)
         if arrow.utcnow() < event.begin < arrow.utcnow().shift(days=event_window):
-
             event_list.append(StreamableEvent(event.uid.removesuffix(oc_domain),
                                 event.name,
                                 UTC_to_local_datetime(event.begin,my_tz),
                                 UTC_to_local_datetime(event.end,my_tz)
                                 )
             )
-        
-    # pprint(event_list)
+    logging.info("Processed %d events", len(event_list))
     return(event_list)
 
 def create_crontab_entries(events):
@@ -105,7 +106,6 @@ if __name__ == '__main__':
         print ("Couldn't load cron file:", CRONFILE)
 
     upcoming_events = get_stream_timeline(url_services, timezone, event_window)
-    pprint(upcoming_events)
 
     create_crontab_entries(upcoming_events)
     
