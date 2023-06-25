@@ -5,5 +5,5 @@
 0 7 * * 0 /home/stcatherine/mpcstart
 
 # Rebuild crontab with web site calendar entries
-@daily cd /home/stcatherine; scgoc-stream/get_services.py 2>&1
+@daily cd /home/stcatherine; scgoc-stream/ical_to_crontab.py 2>&1
 
