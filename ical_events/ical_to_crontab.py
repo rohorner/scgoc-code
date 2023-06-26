@@ -92,9 +92,9 @@ def create_crontab_entries(events):
         job.setall(this_event.end_time)
 
         # Commit the job to the cron of the streamer username
-        # crontab.write_to_user(user='stcatherine')
+        crontab.write_to_user(user='stcatherine')
         # Write to a file to confirm output
-        crontab.write(CRON_OUT)
+        #crontab.write(CRON_OUT)
 
 if __name__ == '__main__':
 
