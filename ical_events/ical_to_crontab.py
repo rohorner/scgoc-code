@@ -14,12 +14,16 @@ logging.debug('A debug message!')
 
 # URL of the "Services" calendar feed
 url_services = "https://stcatherinechurch.onechurchsoftware.com/api/calendars/feed/7iWxebAmvU5PJQgQXh663Cut1ALT9Sz+j+xA==G8Mcb69uvXI0GK8adgGCPXVWnNPI/ni32/fj4/A30Pw==t7aqLeA2Q7ky2C"
+
 # URL of the "Main" calendar feed
 url_main = "https://stcatherinechurch.onechurchsoftware.com/api/calendars/feed/g0mxebAmvU5PJQWp4H4WrHywwZHCxjmSk7Rg==G8Mcb69uxvifTK8adgGCPXVWnNPI/ni32/fj4/A30Pw==t7aqLeA2Q7ieAM"
+
 # Convert output times to local
 timezone = "US/Mountain"
+
 # How far out to retrieve events
 event_window = 30
+
 # One Church domain (this is used to strip out the event uid)
 # INCLUDE THE '@' symbol!
 oc_domain = "@stcatherinechurch.onechurchsoftware.com"
@@ -29,8 +33,6 @@ CRON_OUT = './outcrontab.txt'
 START_COMMAND = '/home/stcatherine/streaming'
 STOP_COMMAND = '/home/stcatherine/ending'
 
-
-# print(calendar)
 
 class StreamableEvent():
     def __init__(self, id, title, start, end):
@@ -51,11 +53,9 @@ def UTC_to_local_datetime(event_time,tz):
 
     # Convert Arrow format to datetime before returning it.
     # Crontab wants everthing in legacy datetime format
-
     return(event_time.to(tz).datetime)
 
 
-# Use the 'timeline' iterator to return the events in chronological order
 def get_stream_timeline(url, my_tz, window):
 
     try:
@@ -68,6 +68,7 @@ def get_stream_timeline(url, my_tz, window):
 
     # populate the event list with just the components that we need to create crontab entries
     # Event ID, Event Name, and start/stop times
+    # Use the ics 'timeline' iterator to return the events in chronological order
     for event in calendar.timeline:
         if arrow.utcnow() < event.begin < arrow.utcnow().shift(days=event_window):
             event_list.append(StreamableEvent(event.uid.removesuffix(oc_domain),
