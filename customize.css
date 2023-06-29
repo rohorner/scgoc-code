@@ -1,0 +1,57 @@
+// SCGOC website Custom CSS
+
+//--- Make footer goarch logo smaller on mobile
+@media screen and (max-width:640px) {
+div#block-yui_3_17_2_1_1625420957034_8068 {
+    width: 30% !important;
+    margin: 0 auto;
+}
+}
+.header-actions-action--cta > a {
+  font-size: 0.9em !important;
+}
+//Shrink padding on the nav button so that is isn't so huge
+
+#siteWrapper.site-wrapper .sqs-button-element--primary {
+    padding: 0.8rem 1.0rem;
+}
+
+// Change the color of the Donate menu item //
+.header-nav-item:nth-child(5) a {
+  color: #a18837 !important;
+}
+
+// Add "download" icon to the two printable calendar buttons on the front page
+#block-yui_3_17_2_1_1687176439480_4950 .sqs-block-button-element:after, #block-0d969b25c93a02d12e78 .sqs-block-button-element:after {
+  content: '\f019';
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-left: 8px; 
+}
+
+// Add a YouTube icon to the "Video Tour" button on the front page
+#block-yui_3_17_2_1_1687782650193_31165 .sqs-block-button-element:after {
+  content: '\f167';
+  font-family: "Font Awesome 5 Brands";
+  font-size: 1.6em;
+  display: inline-block;
+  padding-left: 8px;
+}
+
+// Add a YouTube icon to the "Watch" button on the front page
+#block-646d5e7dc1b8c23769cdba8a .sqs-block-button-element:after {
+  content: '\f167';
+  font-family: "Font Awesome 5 Brands";
+  font-size: 1.6em;
+  display: inline-block;
+  padding-left: 8px;
+}
+
+// Add a headphone icon to the "Listen" button on the front page
+#block-646d5e7d8d1a88b00ea4e5cc .sqs-block-button-element:after {
+  content: '\f025';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.2em;
+  display: inline-block;
+  padding-left: 8px;
+}
