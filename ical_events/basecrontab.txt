@@ -1,8 +1,3 @@
-0 8 * * 1-5 play -q -t mp3 http://ancientfaith.streamguys1.com/mp3music # Weekday Music on Hold
-0 18 * * 1-5 killall play
-
-#Sunday pre-service music
-0 7 * * 0 /home/stcatherine/mpcstart
 
 # Rebuild crontab with web site calendar entries
 @daily cd /home/stcatherine/scgoc-code/ical_events; ./ical_to_crontab.py 2>&1
