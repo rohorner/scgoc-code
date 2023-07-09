@@ -1,11 +1,12 @@
-// SCGOC website Custom CSS
-
 //--- Make footer goarch logo smaller on mobile
 @media screen and (max-width:640px) {
 div#block-yui_3_17_2_1_1625420957034_8068 {
     width: 30% !important;
     margin: 0 auto;
 }
+  div#block-646d5e8262efa045875b6748 {
+    display:none;
+  }
 }
 .header-actions-action--cta > a {
   font-size: 0.9em !important;
@@ -22,9 +23,10 @@ div#block-yui_3_17_2_1_1625420957034_8068 {
 }
 
 // Add "download" icon to the two printable calendar buttons on the front page
-#block-yui_3_17_2_1_1687176439480_4950 .sqs-block-button-element:after, #block-0d969b25c93a02d12e78 .sqs-block-button-element:after {
+#block-ce9b9a2925785c3bc391 .sqs-block-button-element:after, #block-0d969b25c93a02d12e78 .sqs-block-button-element:after {
   content: '\f019';
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.2em;
   display: inline-block;
   padding-left: 8px; 
 }
@@ -54,4 +56,13 @@ div#block-yui_3_17_2_1_1625420957034_8068 {
   font-size: 1.2em;
   display: inline-block;
   padding-left: 8px;
+}
+
+// Add a calendar icon to the "See the Full Calendar" button on the front page
+#block-646d5e8262efa045875b6748 .sqs-block-button-element:after {
+  content: '\f073';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.6em;
+  display: inline-block;
+  padding-left: 8px; 
 }
