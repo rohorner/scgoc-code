@@ -5,6 +5,7 @@ This repo contains all of the scripts and references to other github repos that 
 ical_to_crontab will pull a ical feed, grab a user-defined number of days of events in the future, and create crontab entries to start and stop the audio streamer. This audio feed is then streamed with Icecast.
 
 **in_current_event**
+
 in_current_event is written as a Google Cloud Function and is deployed directly from Cloud Source Repository, which is read-only synced to this git repo.
 When called, the function will pull the defined calendar URL, make a timeline-ordered list of events, and check if the current time falls into a defined event. It will return True or False in a JSON structure along with the current function execution time, the event start time, and a shortened version of the event title. Our current usage of this function is to rename a sermon recording once it completes and is copied from Google Drive to our YouTube channel.
 
