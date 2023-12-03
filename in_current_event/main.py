@@ -111,4 +111,4 @@ def in_current_event(request):
     except Exception as e:
         print(e)
                 
-    return json.dump(first_event)
+    return json.dumps(first_event, indent=4)
