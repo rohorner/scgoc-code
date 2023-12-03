@@ -111,4 +111,4 @@ def in_current_event(request):
     except Exception as e:
         print(e)
                 
-    return jsonify.dump(first_event)
+    return json.dump(first_event)
