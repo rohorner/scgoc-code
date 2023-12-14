@@ -9,6 +9,10 @@ ical_to_crontab will pull a ical feed, grab a user-defined number of days of eve
 in_current_event is written as a Google Cloud Function and is deployed directly from Cloud Source Repository, which is read-only synced to this git repo.
 When called, the function will pull the defined calendar URL, make a timeline-ordered list of events, and check if the current time falls into a defined event. It will return True or False in a JSON structure along with the current function execution time, the event start time, and a shortened version of the event title. Our current usage of this function is to rename a sermon recording once it completes and is copied from Google Drive to our YouTube channel.
 
+**retrieve_livestream_events**
+
+retrieve_livestream_events uses the One Church API to retrieve events from the calendar. It defaults to only events in the "Livestream" category and is used to create a list of upcoming streamed events on calendars, to detect if an event is currently scheduled to be in progress, and to rename a recording to the current event's name.
+
 **Incognito Mode**
 
 We embed events, calendars, and other objects from One Church, but the embeds break in incognito mode. This script will do its best to detect that the user is in an incognito or private window and will notify them that the site may not work correctly.
